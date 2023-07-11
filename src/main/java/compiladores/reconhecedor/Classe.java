@@ -1,16 +1,16 @@
 package compiladores.reconhecedor;
 
 public enum Classe {
-	cId, 
-	cInt, 
-	cReal, 
-	cPalRes, 
-	cDoisPontos, 
+	cId,
+	cInt,
+	cReal,
+	cPalRes,
+	cDoisPontos,
 	cAtribuicao,
-	cSoma,
-	cSub,
-	cDiv,
-	cMult,
+	cMais,
+	cMenos,
+	cDivisao,
+	cMultiplicacao,
 	cMaior,
 	cMenor,
 	cMaiorIgual,
@@ -18,9 +18,11 @@ public enum Classe {
 	cDiferente,
 	cIgual,
 	cVirgula,
-	cPtVirgula,
+	cPontoVirgula,
 	cPonto,
-	cParenteseEsq,
-	cParenteseDir,
-	cEOF;
+	cParEsq,
+	cParDir,
+	cString,
+	cEOF,
+
 }

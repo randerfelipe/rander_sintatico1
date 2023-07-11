@@ -2,39 +2,91 @@ package compiladores.reconhecedor;
 
 import java.util.HashMap;
 
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class TabelaSimbolos {
-	
-	private HashMap<String, TabSimRec> simbolos = new HashMap<String, TabSimRec>();
-	
-	public boolean isPresent(String lexema) {
-		return simbolos.containsKey(lexema);
+
+	private int memoria;
+
+	private List<Registro> registros = new ArrayList<>();
+	private TabelaSimbolos tabelaPai;
+
+	public int getMemoria() {
+		return memoria;
 	}
-	
-	public TabSimRec add(String lexema) {
-		if (simbolos.containsKey(lexema)) {
-			return simbolos.get(lexema);
-		}
-		TabSimRec novo = new TabSimRec();
-		novo.setLexema(lexema);
-		simbolos.put(lexema, novo);
-		return novo;
+
+	public void setMemoria(int memoria) {
+		this.memoria = memoria;
 	}
-	
-	public TabSimRec get(String lexema) {
-		return simbolos.get(lexema);
+
+	public TabelaSimbolos getTabelaPai() {
+		return tabelaPai;
 	}
-	
-	public void delete(String lexema) {
-		simbolos.remove(lexema);
+
+	public void setTabelaPai(TabelaSimbolos tabelaPai) {
+		this.tabelaPai = tabelaPai;
+	}
+
+	public void inserirRegistro(Registro registro) {
+		registros.add(registro);
 	}
 
 	@Override
 	public String toString() {
-		String result = "";
-		for (String chave : simbolos.keySet()) {
-			result += chave + "-> " + simbolos.get(chave) + "\n";
-		}
-		return result;
+		return "memoria: " + memoria + "\nregistros: " + registros + "\ntabelaPai: " + tabelaPai;
 	}
-	
+
+	public boolean jaTemIdentificador(Token t) {
+		for (Registro registro : registros) {
+			if (registro.getNome().equals(t.getValor().getValorIdentificador())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean jaTemIdentificadorRecursiva(Token t) {
+		if (jaTemIdentificador(t)) {
+			return true;
+		} else {
+			if (tabelaPai != null) {
+				return tabelaPai.jaTemIdentificadorRecursiva(t);
+			} else {
+				return false;
+			}
+		}
+	}
+
+	public Registro getIdentificador(Token t) {
+		for (Registro registro : registros) {
+			if (registro.getNome().equals(t.getValor().getValorIdentificador())) {
+				return registro;
+			}
+		}
+		return null;
+	}
+
+	public Registro getIdentificadorRecursiva(Token t) {
+		Registro registro = getIdentificador(t);
+		if (registro != null) {
+			return registro;
+		} else {
+			if (tabelaPai != null) {
+				return tabelaPai.getIdentificadorRecursiva(t);
+			} else {
+				return null;
+			}
+		}
+	}
+
+	public List<Registro> getRegistros() {
+		return registros;
+	}
+
+
+
+
+
 }

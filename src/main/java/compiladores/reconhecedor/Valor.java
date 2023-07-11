@@ -1,32 +1,52 @@
 package compiladores.reconhecedor;
 
 public class Valor {
-	private int inteiro;
-	private double decimal;
-	private String identificador;
+	private int valorInteiro;
+	private double valorDecimal;
+	private String valorIdentificador;
 
-	public int getInteiro() {
-		return inteiro;
+	public Valor(int valorInteiro) {
+		this.valorInteiro = valorInteiro;
 	}
 
-	public void setInteiro(int inteiro) {
-		this.inteiro = inteiro;
+	public Valor(double valorDecimal) {
+		this.valorDecimal = valorDecimal;
 	}
 
-	public double getDecimal() {
-		return decimal;
+	public Valor(String valorIdentificador) {
+		this.valorIdentificador = valorIdentificador;
 	}
 
-	public void setDecimal(double decimal) {
-		this.decimal = decimal;
+	public int getValorInteiro() {
+		return valorInteiro;
 	}
 
-	public String getIdentificador() {
-		return identificador;
+	public void setValorInteiro(int valorInteiro) {
+		this.valorInteiro = valorInteiro;
 	}
 
-	public void setIdentificador(String identificador) {
-		this.identificador = identificador;
+	public double getValorDecimal() {
+		return valorDecimal;
 	}
 
+	public void setValorDecimal(double valorDecimal) {
+		this.valorDecimal = valorDecimal;
+	}
+
+	public String getValorIdentificador() {
+		return valorIdentificador;
+	}
+
+	public void setValorIdentificador(String valorIdentificador) {
+		this.valorIdentificador = valorIdentificador;
+	}
+
+	@Override
+	public String toString() {
+		return "Valor{" +
+				"valorInteiro=" + valorInteiro +
+				", valorDecimal=" + valorDecimal +
+				", valorIdentificador='" + valorIdentificador + '\'' +
+				'}';
+	}
 }

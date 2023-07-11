@@ -5,16 +5,17 @@ public enum Categoria {
 	VARIAVEL("Variável"),
 	PARAMETRO("Parâmetro"),
 	PROCEDIMENTO("Procedimento"),
-	TIPO("Tipo");
-	
+	TIPO("Tipo"),
+	PROGRAMAPRINCIPAL("Programa Principal");
+
 	private String descricao;
-	
+
 	private Categoria(String descricao) {
 		this.descricao = descricao;
 	}
-	
+
 	public String getDescricao() {
 		return descricao;
 	}
-	
+
 }
